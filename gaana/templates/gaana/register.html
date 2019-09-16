@@ -1,0 +1,27 @@
+{% extends 'gaana/master.html' %}
+{% block title %}Signup Page{% endblock%}
+{% block body %}
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+
+    <table class="table-responsive">
+        {% for i in form %}
+            <tr>
+
+
+
+            <td><h3>{{ i.label_tag }}</h3></td>
+            <td>{{ i }}</td>
+            <td>{{ i.help_text }}</td>
+            <td>{{ i.errors }}</td>
+            </tr>
+
+        {% endfor %}
+    </table>
+
+
+        <button><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+    </form>
+
+{% endblock %}

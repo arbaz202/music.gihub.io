@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        var record = document.querySelector('#record_btn');
+var stop = document.querySelector('#stop_btn');
+
+  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+     console.log('getUserMedia supported.');
+     navigator.mediaDevices.getUserMedia (
+        // constraints - only audio needed for this app
+        {
+           audio: true
+        })
+
+        // Success callback
+        .then(function(stream) {
+          var mediaRecorder = new MediaRecorder(stream);
+          record.onclick = function() {
+            mediaRecorder.start();
+            record.disabled = true;
+            stop.disabled = false;
+            console.log(mediaRecorder.state);
+            console.log("recorder started");
+            record.style.background = "red";
+            record.style.color = "black";
+          }
+
+          var chunks = [];
+
+          mediaRecorder.ondataavailable = function(e) {
+            chunks.push(e.data);
+          }
+          stop.onclick = function() {
+            mediaRecorder.stop();
+            record.disabled = false;
+            stop.disabled = true;
+            console.log(mediaRecorder.state);
+            console.log("recorder stopped");
+            record.style.background = "";
+            record.style.color = "";
+          }
+
+          mediaRecorder.onstop = function(e) {
+            console.log("recorder stopped");
+            var audio = document.querySelector('#audio');
+            var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+            chunks = [];
+            var audioURL = window.URL.createObjectURL(blob);
+            $("#source").attr("src", audioURL);
+            $("#audio")[0].load();
+            stream.getTracks()[0].stop();
+
+            //CODE TO UPLOAD BLOB DATA TO DJANGO SERVER
+            ?????????
+            //
+          }
+        })
+
+        // Error callback
+        .catch(function(err) {
+           console.log('The following getUserMedia error occured: ' + err);
+        }
+     );   } else {
+     console.log('getUserMedia not supported on your browser!');   }
+    </script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>

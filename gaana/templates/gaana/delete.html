@@ -1,0 +1,17 @@
+{% extends 'gaana/master1.html' %}
+{% block title %}Signup Page{% endblock%}
+
+{% block body %}
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h3>Do you wish to continue deleting this album? </h3>
+<img src="{{ object.image.url}}"height="100px" width="100px" >
+    <p>
+    <h3>{{ object.title }}</h3>
+        <h3>Do you wish to continue? </h3>
+
+        <button><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+    <a href="{% url 'gaana:home' %}" class="btn btn-primary">no</a>
+    </form>
+</p>
+{% endblock %}

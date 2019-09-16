@@ -1,0 +1,26 @@
+{% extends 'gaana/master1.html' %}
+
+    {% load staticfiles %}
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block body %}
+        {% if val.is_authenticated %}
+            {% for i in val.profile_set.all %}
+        <h1>{{ i.username }} welcome to your profile page</h1>
+            <h2>{{ i.first_name }}</h2>
+        <h2>{{i.last_name }}</h2>
+            <h2>{{i.email }}</h2>
+        <h2>{{ user.userprofile.user_country }}</h2>
+
+
+    <img src="{{ i.image.url }}" width = "150" height = "150"  />
+            {% endfor %}
+
+
+
+
+
+        {% endif %}
+
+{% endblock %}

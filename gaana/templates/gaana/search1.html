@@ -1,0 +1,48 @@
+
+{% extends 'gaana/master.html' %}
+{% block body %}
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+
+    <div>
+        {% if messages %}
+        <ul class="messages">
+            {% for k in messages %}
+            <li style="color: aqua">{{ k }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    </div>
+<div style="color: aqua">
+    {% if sea %}
+    {% for k in sea %}
+    <table class="table" border="0px" width="300px">
+    <tr>
+        <td>Song Title </td>
+        <td>Artist </td>
+        <td>Genre </td>
+        <td>Logo </td>
+        <td>Action </td><br>
+    </tr>
+        <tr>
+
+            <td>{{ k.title }}</td>
+        <td>{{ k.artist }}</td>
+        <td>{{k.genre }} </td>
+        <td><img src="{{ k.image.url}}"height="100px" width="100px" ></td>
+        <td><audio src="{{ k.sfile.url}}" controls="controls"></audio> </td>
+        </tr>
+    </table>
+    {% endfor %}
+{% endif %}
+</div>
+</div>
+</body>
+</html>
+{% endblock %}

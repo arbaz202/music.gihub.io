@@ -1,0 +1,17 @@
+body {
+    background: greenyellow url("bg2.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    font-size: medium;
+
+
+
+}
+
+@media (max-width: 767px) {
+    .nav-tabs {
+        min-width: 100%;
+        display: inline-grid;
+    }
+}
+

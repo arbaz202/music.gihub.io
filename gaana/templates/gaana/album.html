@@ -1,0 +1,53 @@
+{% extends 'gaana/master1.html' %}
+{% block title %}Signup Page{% endblock%}
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+{% block body %}
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <table class="table-responsive">
+        {% for i in form %}
+
+            <tr style="font-size: 200%">
+            <td style="font-size: 180%"></td>
+
+            <td style="font-size: 180%"><h3 style="font-size: 100% ;color:palegreen" >{{ i.label_tag }}</h3></td>
+            <td style="font-size: 180%">{{ i }}</td>
+            <td style="font-size: 180%">{{ i.help_text }}</td>
+            <td style="font-size: 180%">{{ i.errors }}</td>
+            </tr>
+
+        {% endfor %}
+    </table>
+<html>
+<head></head>
+<body>
+ @media screen and (min-width:768px){
+.table-responsive{
+    font-size:100%
+    color:pink
+    }
+        }
+     @media screen and (min-width:489px)and (max-width:767px){
+    .table-responsive{
+    font-size:100%
+    color:green
+    }
+        }
+</body>
+  </html>
+
+        }
+     @media screen and (max-width:480px){
+    .table-responsive{
+    font-size:100%
+    color:yellow
+    }
+        }
+
+        }
+
+        <button><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+    </form>
+
+{% endblock %}
